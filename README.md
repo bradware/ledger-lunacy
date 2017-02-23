@@ -77,7 +77,7 @@ description like "Deposit from Chase Bank **0978 for your investment in Uber".
 Come up with your own logical descriptions for these transactions and display them in the "Description" column of the
 transaction table.
 
-![AngelList Investing Account](/angellist_screenshot.png)
+![AngelList Investing Account](/documentation/screenshot.png)
 
 ### 3. CSS/Style
 
