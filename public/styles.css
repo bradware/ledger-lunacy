@@ -1,0 +1,80 @@
+html {
+  font-family: "helvetica neue", helvetica, arial, freesans, "liberation sans", "numbus sans l", sans-serif;
+}
+
+.title {
+  margin: 0.5em 0;
+  text-align: center;
+}
+
+body {
+  padding: 20px;
+}
+
+.balance {
+  background-color: #dbdfe4;
+  font-size: 1.5em;
+  padding: 20px 20px 20px 20px;
+}
+
+.balance-title {
+  font-size: 0.75em;
+}
+
+.balance-info {
+  display: inline-block;
+  width: 100%;
+}
+
+.balance-info > button {
+  float: right;
+  margin-left: 25px;
+  width: 150px;
+}
+
+.balance-info > button > i {
+  margin-right: 7px;
+}
+
+.file-input, .form-check-label {
+  font-size: 0.75em;
+  padding-top: 3px;
+}
+
+.content {
+  width: 800px;
+  margin: auto;
+  padding: 10px 0 10px 0;
+}
+
+table {
+  width: 100%;
+}
+
+.table-title {
+  font-size: 1.5em;
+  margin: 50px 0 25px 0;
+}
+
+th {
+  font-size: 0.85em;
+  padding: 15px 0 15px 0;
+}
+
+td {
+  padding: 20px 0 20px 0;
+}
+
+/** Constants */
+.black {
+  color: #000;
+}
+.border {
+  border-top: 1px solid #dbdfe4;
+}
+.grey {
+  color: #999;
+}
+.thin {
+  font-weight: 300;
+}

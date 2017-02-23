@@ -1,0 +1,25 @@
+Subject: Following up on missing wired funds 
+
+Dear Dr. Horrible,
+
+I am writing today to follow up on the trouble you were having wiring $10,000 to Startup X's account. After some investigation we realized that you were wiring the funds correctly, but our system experienced a bug and was incorrectly filtering out the transaction before it could hit the destination account. Because of the delay to find the cause of this error and our assumption that your funds weren't being wired, Startup X has now closed the deal without your investment.
+
+First of all, I would like to apologize on behalf of {bank_name} for the confusion, inconvenience, and delay that caused you to miss out on the investment deal. We take full responsibility for the outcome, and know it was a frustrating process with a disappointing outcome.
+
+To compensate for your troubles, we have decided to wire back the full amount to your source account plus an extra 5% for the inconvenience and missed opportunity due to our error. The total wired back to you will now be $10,500 and should hit your account in 2-3 business days. We have also upgraded your account to premium status, which means you will now get priority customer service day and night if you ever have any more issues while doing business with us.
+
+Again, we apologize for the delay in finding your wired funds and the missed investment opportunity, and I hope the extra compensation will encourage you to still conduct business with {bank_name}.
+
+Sincerely,
+Brad Ware
+
+-----------------------------------------------------
+
+EXTRA INFO
+{bank_name}: variable for the name of the bank that I am representing as a customer support agent
+
+Assumptions:
+	- I am allowed to compensate the customer financially when the bank causes a major inconvenience
+	- The bank has different levels of status for customers with varying degrees of benefits and customer service
+	- The bank has the access and authority to wire money back to Dr. Horrible that is different than the original amount
+	- 5% of the total amount is an appropriate compensation for an extreme customer service error

@@ -1,0 +1,35 @@
+INSTRUCTIONS
+I chose to do HTML mockup elements because I don't have any experience with wireframing software, and Bootstrap contained many of the components I needed for the forms. To find the modals, simple click on the Transfer, Deposit, or Withdraw buttons at the top of the page.
+
+INTRODUCTION
+Transactions are a core feature of any money management software, because it alleviates the trouble of visiting one's bank every time a deposit, transfer or withdrawal needs to be made. Therefore, I wanted all three of those actions to be available at the top of the account page, as one of the first options a user sees after logging in with their credentials. The user flow for completing each of these actions still resides in the transactions screen, and the modal closes once the proposed transaction has been submitted. This keeps the visibility high for each possible action, and the modal design makes it very simple to complete a transaction. Below I outline the information needed for each feature, and the assumptions and security risks that need to be addressed.
+
+DEPOSITS
+Depositing money from home is a really convenient feature that I wanted to be available for the users of this system. Therefore, depositing funds is initiated with a button found at the top of the interface for convenience. After clicking, the user can easily fill out the modal, which asks for the amount, whether it's a money order or check, memo description, and finally a picture capturing the official document. Deposits are the only transaction to require a memo or description, as it's an optional field for the others. I upload checks all the time through my bank's mobile app, and I wanted to design this system to handle that functionality as well. The biggest engineering barrier for this feature will be logically parsing each image, and obviously making sure the bank and user don't reveal any secure credentials during the transaction.
+
+	Assumptions:
+		- I have a back end system that can parse images to detect if the pictures are of legitimate checks and money order forms
+			- The back end system can also match the amount on the image to see if it equals the same as the modal field
+		- The bank has a secure authentication system in place so that user's accounts cannot be hacked to make anonymous deposits and withdrawals
+		- My system can also securely interface with accounts of different banks to make sure it can support a withdrawal of the specified amount
+
+WITHDRAWALS
+I also wanted to keep the same design for withdrawals so that the experience is consistent for the user. However, some of the required information for the transactions does need to change. Because this money is leaving the bank, I assumed two possible scenarios for the customer of the bank. A user could make a request online to go pickup a withdrawal at a bank branch in the form of cash, check, or money order. Or, one could have cash, check, or money order mailed to their preferred address for convenience. Because I am designing the online portal, I am assuming the user will want to receive the withdrawal through the mail, and if they want to go pick up the amount they can visit a local branch. Therefore, I again ask for the amount but also the address to send the check. If my application had a working back end, the UI would populate the mailing address in the form to match the address saved with the user's account, or allow them to put a different one. I also require a date to initiate the transaction, as the withdrawal may not need to take place immediately. I again ask for a memo/reason for the withdraw just so that the company can learn and potentially build machine learning algorithms to detect if a user is going to withdraw his or her funds.
+
+	Assumptions:
+		- Banks allow users to withdraw funds from the account without visiting a bank branch in person
+		- The cash/checks/money order will be mailed to the user in a secure fashion and not susceptible to fraud or theft
+		- Users will feel comfortable to withdraw funds online and receive a cash/checks/money order in the mail
+		- The bank has a secure authentication system in place so that user accounts cannot be infiltrated to make anonymous withdrawals to addresses not registered with the user's account
+
+TRANSFERS
+From my personal experience, it's great to transfer money between my different accounts. I have a checking and savings account and I routinely move funds between them all the time because it's very simple and accessible from anywhere. Therefore, I also added a modal interface for moving funds between different bank accounts. These transfers require a source account and also a destination account that can be registered in the user's history/preferences or entered into the form. The source account must be registered with the user under their banking profile. If the user enters a new destination account (wiring money to an external account), the back end will have to parse the input and verify its existence before submitting the transfer. Right now I give the user an option to enter a 'New Account' where they must put in the account and routing number. I wasn't able to mock this part in my HTML elements but after the newly entered account has been verified, a simple green checkmark or success indicator will provide an affordance to the user that they entered a viable destination account. I also ask again for the amount, date to make the transfer, and a memo or description for the transfer.
+	
+	Assumptions:
+		- Users will have multiple accounts for items like company savings, current investments, and routine checking for spending
+		- The bank has a secure authentication system in place so that user accounts cannot be infiltrated to make anonymous transfers to external accounts (very scary if security measures are not taken!)
+		- The back end system can verify the validity of external bank accounts before trying to transfer the funds
+		- Funds can be securely delivered between external bank accounts without fraud or theft
+
+SUMMARY
+The modal design makes it easy to quickly take action on one's account, alerts the user upon success, and takes them right back to the transaction screen. My mockup leveraging forms is found on many applications across the web, so the information asked shouldn't be a surprise for the user or take too long to fill out.

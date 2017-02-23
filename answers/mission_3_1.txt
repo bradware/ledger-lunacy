@@ -1,0 +1,50 @@
+GATHER INFORMATION
+Before I start my investigation, I want to get some more clarification from the customer because the initial email lacked some key details. I would first respond to Dr. Horrible and let him/her know that I am sorry for this inconvenience, and that the issue is being investigated. In the same email, I would ask for some follow up information that would help aid the process of figuring out what happened to the missing transaction. Some sample questions are below:
+
+	- Is this missing transaction a wired transfer to Startup X's account, or a deposit into your account?
+	- What amount was wired for this transaction?
+	- Can you remember the day you initiated this transaction?
+	- Can you tell if other transactions are showing up correctly in your account? What about the transactions initiated after the missing one?
+	- What is your preferred follow-up method after a solution has been found? Does email work or would a text message or phone call suit your schedule better?
+
+If Dr. Horrible is able to answer any of the above questions, then that information will speed up the process of figuring out what happened to the transaction, and clarify any ambiguity from the initial email.
+
+RULE OUT OBVIOUS ANSWERS
+After Dr. Horrible responds with more information about the transaction that went missing, I can now try to identify any obvious reason as to why Dr. Horrible's transaction didn't go through. This is done at the beginning of the process in order to eliminate doing a deeper investigation that may not be necessary. Here are some questions that could identify the root problem:
+
+	- Does Startup X have a legitimate bank account? Did Dr. Horrible try to wire money to/from an unregistered account?
+	- Did Dr. Horrible have enough funds to send the money at the time?
+	- Does either account have privacy guards in place against accepting/sending funds above a certain limit?
+	- Regardless of what shows in Dr. Horrible's account interface, did the transaction ever actually take place? Did the funds ever reach or leave his bank account?
+
+If all of these questions can be answered, then I would start to investigate at a deeper level about what went wrong.
+
+REVIEW ERROR HISTORY
+After falsifying obvious explanations, I would then check the support log/history to figure out if the system had ever seen this type of problem before. Is there a history of complaints about missing transactions? Has there been a common error or issue with these types of requests? If not, does Dr. Horrible's transaction have some key differences that can be identified between customer support issues in the past? 
+
+NARROW DOWN THE SEARCH SCOPE
+If I were not able to find a similar complaint in the customer support history, I would then communicate with different layers of the engineering stack to try and tackle where the bug resides for the transaction.
+
+	Did the transaction request ever go through to the bank's API? For some reason did he think he submitted the transaction without it ever sending?
+
+		To answer this, I would contact the back end engineering team responsible for the event (append only) logs of users. I would ask them to query the history of Dr. Horrible's account based on the initial information he provided. These types of queries would search around the date, amount, and the name of Startup X. If nothing ever showed up in the event stream/log for Dr. Horrible, then I would assume he either made a human error on the interface by thinking he submitted a transfer, or there is a bug in the interface that never made his transaction call to the API. The latter scenario would be worse because the user is prompted that a successful transaction occurred but no action was initiated on the back end.
+
+	If the request is found in the logs/history, did we ever store the state of his account for that transaction?
+
+		If we have a record of the transaction request, did this ever get stored in the event queue/pipeline and make it to a permanent data store? To find this out I would next ask the database/data infrastructure team if they have a record of this transaction between Dr. Horrible and Startup X. If not, then I would chat with the API and Data Store teams to figure out why the request was never queued and stored as an actionable item. If it were, I would then move up the stack towards the client source code.
+
+	If the transaction was stored/logged in the database or pipeline, why was the client never updated with the information?
+
+		Now if we have a record of the transaction stored in Dr. Horrible's user table (assuming some sort of relational data store), why was this never reflected in the client? If the back end logic of the application correctly stored the state of Dr. Horrible's account, what is responsible for sending that information to the client interface? Because some transactions between accounts can take longer than others, did a lag between wiring the funds cause a timeout in the system? Are there other complaints about transactions not appearing that match the variables of this situation? I would then investigate with the front end focused team about how state and user information is sent to the client. At this point of the investigation, we know that either the client never refreshed with new data from the back end, or the request had some type of error and the client could not receive it.
+
+
+DUPLICATE THE ERROR
+After looking at the main layers of my bank account's application stack, I would hope to have a better idea of where the bug resides. Now, I would try to duplicate Dr. Horrible's situation with a dummy account to see if the same result happened in the dummy user's interface. As the transaction is taking place, I would ask the engineering team to put log statements or flags in the system so we can watch the breadcrumbs of the transactions call stack. Hopefully after duplicating the scenario one of the situations below will have occurred:
+
+	- The result is the same as Dr. Horrible, and now we can identify exactly where the bug resides in the code base
+	- A different type of error results, which I can also file as a separate bug task to fix
+	- The transaction goes through smoothly, which I can try to duplicate N times until everyone is confident there is no bug
+	- If we are not able to duplicate the bug Dr. Horrible experienced, then we can document that and be on the lookout for it to occur again. Any number of factors could have led to it, ranging from network connection failures to Startup X's banking software exposing the source of the bug.
+
+REVIEW AND FOLLOW UP
+At this point in the support step, I should have a pretty good idea about what happened and the steps that need to be taken moving forward to resolve the issue. I will then communicate the conclusion to Dr. Horrible with a sincere apology and a solution for his account to again be accurate and up to date. Finally, I would document the customer support scenario and the steps to finding the solution so that future cases can use it as a source of knowledge.

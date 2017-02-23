@@ -1,0 +1,144 @@
+/ Balance buttons
+%button.btn.btn-secondary.acct-btn{"data-target" => "#withModal", "data-toggle" => "modal", :type => "button"}
+  %i.black.fa.fa-arrow-circle-down{"aria-hidden" => "true"}>
+  %span.grey.thin Withdraw
+%button.btn.btn-secondary.acct-btn{"data-target" => "#depModal", "data-toggle" => "modal", :type => "button"}
+  %i.black.fa.fa-arrow-circle-up{"aria-hidden" => "true"}>
+  %span.grey.thin Deposit
+%button.btn.btn-secondary.acct-btn{"data-target" => "#transModal", "data-toggle" => "modal", :type => "button"}
+  %i.black.fa.fa-exchange{"aria-hidden" => "true"}>
+  %span.grey.thin Transfer
+.modals
+  / Deposit Modal
+  #depModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "depModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog{:role => "document"}
+      .modal-content
+        .modal-header
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+          %h4#myModalLabel.modal-title.thin New Deposit
+        .modal-body.thin
+          %form
+            .form-group
+              %label{:for => "exampleInputEmail1"} Amount
+              %form.form-inline
+                .form-group
+                  %label.sr-only{:for => "exampleInputAmount"} Amount (in dollars)
+                  .input-group
+                    .input-group-addon $
+                    %input#exampleInputAmount.form-control.grey{:placeholder => "Amount", :type => "text"}/
+                    .input-group-addon .00
+            %fieldset.form-group
+              %legend Medium of Exchange
+              .form-check
+                %label.form-check-label.grey
+                  %input#optionsRadios1.form-check-input{:checked => "checked", :name => "optionsRadios", :type => "radio", :value => "option1"}/
+                  Check
+              .form-check
+                %label.form-check-label.grey
+                  %input#optionsRadios2.form-check-input{:name => "optionsRadios", :type => "radio", :value => "option2"}/
+                  Money Order
+            .form-group
+              %legend Upload Picture
+              %input.filestyle.file-input.grey{"data-icon" => "false", :type => "file"}/
+        .modal-footer.thin
+          %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}
+            %span.thin Cancel
+          %button.btn.btn-primary{"data-dismiss" => "modal", :onclick => "accountSubmit()", :type => "button"}
+            %span.thin Submit
+  / Withdrawal Modal
+  #withModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "withModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog{:role => "document"}
+      .modal-content
+        .modal-header
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+          %h4#myModalLabel.modal-title.thin New Withdrawal
+        .modal-body.thin
+          %form
+            .form-group
+              %label{:for => "exampleInputEmail1"} Amount
+              %form.form-inline
+                .form-group
+                  %label.sr-only{:for => "exampleInputAmount"} Amount (in dollars)
+                  .input-group
+                    .input-group-addon $
+                    %input#exampleInputAmount.form-control.grey{:placeholder => "Amount", :type => "text"}/
+                    .input-group-addon .00
+            %fieldset.form-group
+              %legend Medium of Exchange
+              .form-check
+                %label.form-check-label.grey
+                  %input#optionsRadios2.form-check-input{:name => "optionsRadios", :type => "radio", :value => "option2"}/
+                  Cash
+              .form-check
+                %label.form-check-label.grey
+                  %input#optionsRadios1.form-check-input{:checked => "checked", :name => "optionsRadios", :type => "radio", :value => "option1"}/
+                  Check
+              .form-check
+                %label.form-check-label.grey
+                  %input#optionsRadios2.form-check-input{:name => "optionsRadios", :type => "radio", :value => "option2"}/
+                  Money Order
+            .form-group
+              %label{:for => "exampleAddress"} Mailing Address
+              %input#formGroupExampleInput.form-control.grey{"aria-describedby" => "textHelp", :type => "text"}/
+            .form-group
+              %label{:for => "exampleInputEmail1"} Send on
+              %input#exampleInputDate.form-control.grey{"aria-describedby" => "dateHelp", :type => "date"}/
+            .form-group
+              %label{:for => "exampleInputEmail1"} Memo/Reason
+              %input#formGroupExampleInput.form-control.grey{"aria-describedby" => "textHelp", :type => "text"}/
+        .modal-footer.thin
+          %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}
+            %span.thin Cancel
+          %button.btn.btn-primary{"data-dismiss" => "modal", :onclick => "accountSubmit()", :type => "button"}
+            %span.thin Submit
+  / Transfer Modal
+  #transModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "transModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog{:role => "document"}
+      .modal-content
+        .modal-header
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+          %h4#myModalLabel.modal-title.thin New Transfer
+        .modal-body.thin
+          %form
+            .form-group
+              %label{:for => "exampleInputEmail1"} Amount
+              %form.form-inline
+                .form-group
+                  %label.sr-only{:for => "exampleInputAmount"} Amount (in dollars)
+                  .input-group
+                    .input-group-addon $
+                    %input#exampleInputAmount.form-control.grey{:placeholder => "Amount", :type => "text"}/
+                    .input-group-addon .00
+            .form-group
+              %label{:for => "exampleSelect1"} From
+              %select#exampleSelect1.form-control.grey
+                %option Account #1
+                %option Account #2
+                %option Account #3
+            .form-group
+              %label{:for => "exampleSelect1"} To
+              %select#dest-acct.form-control.grey
+                %option Account #2
+                %option Account #3
+                %option New Account
+            %div.external-accts
+              .form-group
+                %label{:for => "exampleInputEmail1"} Account Number
+                %input#formGroupExampleInput.form-control.grey{"aria-describedby" => "textHelp", :type => "text"}/
+              .form-group
+                %label{:for => "exampleInputEmail1"} Routing Number
+                %input#formGroupExampleInput.form-control.grey{"aria-describedby" => "textHelp", :type => "text"}/
+            .form-group
+              %label{:for => "exampleInputEmail1"} Date
+              %input#exampleInputDate.form-control.grey{"aria-describedby" => "dateHelp", :type => "date"}/
+            .form-group
+              %label{:for => "exampleInputEmail1"} Memo/Reason
+              %input#formGroupExampleInput.form-control.grey{"aria-describedby" => "textHelp", :type => "text"}/
+        .modal-footer
+          %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}
+            %span.thin Cancel
+          %button.btn.btn-primary{"data-dismiss" => "modal", :onclick => "accountSubmit()", :type => "button"}
+            %span.thin Submit
